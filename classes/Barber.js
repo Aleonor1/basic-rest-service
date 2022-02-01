@@ -1,3 +1,4 @@
+'use strict'
 class Barber {
     constructor(firstName, lastName, identityCode, address, phoneNumber, id) {
         this.firstName = firstName;

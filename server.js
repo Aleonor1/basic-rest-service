@@ -8,10 +8,10 @@ app.use(express.json());
 
 app.set("view engine", "ejs");
 
-const userRouter = require('./routes/barbers');
+const userRouter = require('./routes/BarberController');
 app.use('/barbers', userRouter);
 
-const dogClipperRouter = require('./routes/dogClippers');
+const dogClipperRouter = require('./routes/DogClipperController');
 app.use('/dog-clippers', dogClipperRouter);
 
 
