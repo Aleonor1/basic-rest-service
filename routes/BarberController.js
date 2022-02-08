@@ -29,7 +29,7 @@ router.get("/new", (req, res) => {
 
 router.post('/', (req, res) => {
     let data = req.body[0];
-    logger(`Accesed POST with "/" path with values ${data.firstName, data.lastName, data.id, data.address, data.phone}`);
+    logger(`Accesed POST with "/" path`);
     if (!arrayOfBarbers.isIdInArray(data.id)) {
         arrayOfBarbers.newBarber(data.firstName, data.lastName, data.identityCode, data.address, data.phone, data.id);
         logger(`Added barber with values:

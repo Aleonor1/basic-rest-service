@@ -27,6 +27,7 @@ class Barbers {
     updateObjectById(id, updateObject) {
         let barberIndex = this.getBarerIndexById(id);
         for (let key in updateObject) {
+            this.barbers[barberIndex];
             this.barbers[barberIndex][key] = updateObject[key];
         }
     }

@@ -19,6 +19,10 @@ class DogClipperHandler {
         return this.dogClippers.some(dogClipper => dogClipper.id == id);
     }
 
+    isNameInArray(name) {
+        return this.dogClippers.some(dogClipper => dogClipper.name == name);
+    }
+
     updateObjectById(id, updateObject) {
         let dogClipperIndex = this.dogClippers.findIndex(dogClipper => dogClipper.id === id);
         for (let key in updateObject) {
