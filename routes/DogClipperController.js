@@ -5,12 +5,11 @@ const { response } = require('express');
 const express = require('express');
 const res = require('express/lib/response');
 const DogClipper = require('../classes/DogClipper');
-const DogClipperController = require('../controllers/DogClipperHandler');
+const DogClipperHandler = require('../controllers/DogClipperHandler');
 const router = express.Router();
 
-let dogClippers = new DogClipperController();
+let dogClippers = new DogClipperHandler().getInstance();
 
-// const logger = console.log;
 function logger(str) {
     let now = new Date();
     console.log(now.toUTCString() + " " + str);

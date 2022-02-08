@@ -1,10 +1,11 @@
 'use strict';
 
 class Price {
-    constructor(price, dogBreed, dogClipper) {
+    constructor(price, dogBreed, dogClipper, id) {
         this.price = price;
         this.dogBreed = dogBreed;
         this.dogClipper = dogClipper;
+        this.id = id;
     }
 
     get getPrice() {
@@ -17,6 +18,10 @@ class Price {
 
     get getDogClipper() {
         return this.dogClipper;
+    }
+
+    get getId() {
+        return this.id;
     }
 
     set setPrice(price) {

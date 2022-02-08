@@ -2,7 +2,6 @@
 
 const DogClipper = require("../classes/DogClipper");
 
-// const DogClipper = require("../classes/DogClipper");
 
 class DogClipperHandler {
     constructor() {
@@ -21,6 +20,10 @@ class DogClipperHandler {
 
     isNameInArray(name) {
         return this.dogClippers.some(dogClipper => dogClipper.name == name);
+    }
+
+    getDogClipperById(id) {
+        return this.dogClippers.find(dogClipper => dogClipper.id == id);
     }
 
     updateObjectById(id, updateObject) {
@@ -42,4 +45,20 @@ class DogClipperHandler {
 
 }
 
-module.exports = DogClipperHandler;
+class Singleton {
+
+    constructor() {
+        if (!Singleton.instance) {
+            Singleton.instance = new DogClipperHandler();
+        }
+    }
+
+    getInstance() {
+        return Singleton.instance;
+    }
+
+}
+
+module.exports = Singleton;
+
+

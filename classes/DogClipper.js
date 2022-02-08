@@ -1,9 +1,6 @@
 'use strict'
 class DogClipper {
-    name;
-    description;
-    difficultyLevel;
-    id;
+
 
     constructor(name, description, difficultyLevel, id) {
         this.name = name;

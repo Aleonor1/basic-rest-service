@@ -14,5 +14,8 @@ app.use('/barbers', userRouter);
 const dogClipperRouter = require('./routes/DogClipperController');
 app.use('/dog-clippers', dogClipperRouter);
 
+const priceRouter = require('./routes/PriceController');
+app.use('/prices', priceRouter);
+
 
 app.listen(3000);
