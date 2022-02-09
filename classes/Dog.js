@@ -1,16 +1,18 @@
-'use strict'
+"use strict";
 
 class Dog {
-    constructor(name, dogBreed) {
-        this.name = name;
-        this.dogBreed = dogBreed;
-    }
+  constructor(name, dogBreed) {
+    this.name = name;
+    this.dogBreed = dogBreed;
+  }
 
-    getName() {
-        return this.name;
-    }
+  getName() {
+    return this.name;
+  }
 
-    getDogBreed() {
-        return this.dogBreed;
-    }
+  getDogBreed() {
+    return this.dogBreed;
+  }
 }
+
+module.exports = Dog;

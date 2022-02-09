@@ -1,46 +1,43 @@
-'use strict'
+"use strict";
 class DogClipper {
+  constructor(name, description, difficultyLevel, id) {
+    this.name = name;
+    this.description = description;
+    this.difficultyLevel = difficultyLevel;
+    this.id = id;
+  }
 
+  get getName() {
+    return this.name;
+  }
 
-    constructor(name, description, difficultyLevel, id) {
-        this.name = name;
-        this.description = description;
-        this.difficultyLevel = difficultyLevel;
-        this.id = id;
-    }
+  get getDescription() {
+    return this.description;
+  }
 
-    get getName() {
-        return this.name;
-    }
+  get getDifficultyLevel() {
+    return this.difficultyLevel;
+  }
 
-    get getDescription() {
-        return this.description;
-    }
+  get getId() {
+    return this.id;
+  }
 
-    get getDifficultyLevel() {
-        return this.difficultyLevel;
-    }
+  set setName(name) {
+    this.name = name;
+  }
 
-    get getId() {
-        return this.id;
-    }
+  set setDescription(description) {
+    this.description = description;
+  }
 
-    set setName(name) {
-        this.name = name;
-    }
+  set setDifficultyLevel(level) {
+    this.difficultyLevel = level;
+  }
 
-    set setDescription(description) {
-        this.description = description;
-    }
-
-    set setDifficultyLevel(level) {
-        this.difficultyLevel = level;
-    }
-
-    set setId(id) {
-        this.id = id;
-    }
+  set setId(id) {
+    this.id = id;
+  }
 }
-
 
 module.exports = DogClipper;
