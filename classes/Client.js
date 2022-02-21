@@ -1,6 +1,6 @@
-"use strict";
+'use strict';
 
-const Dog = require("./Dog");
+const Dog = require('./Dog');
 
 class Client {
   constructor(firstName, lastName, email, phoneNumber, id) {

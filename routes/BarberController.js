@@ -1,30 +1,30 @@
-"use strict";
+'use strict';
 
-const { response } = require("express");
-const express = require("express");
-const res = require("express/lib/response");
+const { response } = require('express');
+const express = require('express');
+const res = require('express/lib/response');
 const router = express.Router();
 
 function logger(str) {
   let now = new Date();
-  console.log(now.toUTCString() + " " + str);
+  console.log(now.toUTCString() + ' ' + str);
 }
 
-const Barber = require("../classes/Barber");
-const Barbers = require("../controllers/BarberHandler");
+const Barber = require('../classes/Barber');
+const Barbers = require('../controllers/BarberHandler');
 
 let arrayOfBarbers = new Barbers();
 
-router.get("/", (req, res) => {
+router.get('/', (req, res) => {
   logger(`Accesed GET with "/" path`);
   res.send(arrayOfBarbers);
 });
 
-router.get("/new", (req, res) => {
-  res.render("barbers/new");
+router.get('/new', (req, res) => {
+  res.render('barbers/new');
 });
 
-router.post("/", (req, res) => {
+router.post('/', (req, res) => {
   let data = req.body[0];
   logger(`Accesed POST with "/" path`);
   if (!arrayOfBarbers.isIdInArray(data.id)) {
@@ -49,7 +49,7 @@ router.post("/", (req, res) => {
   }
 });
 
-router.patch("/:id", (req, res) => {
+router.patch('/:id', (req, res) => {
   let updateObject = req.body;
   let id = req.params.id;
   if (arrayOfBarbers.isIdInArray(id)) {
@@ -62,7 +62,7 @@ router.patch("/:id", (req, res) => {
   }
 });
 
-router.put("/:id", (req, res) => {
+router.put('/:id', (req, res) => {
   let id = req.params.id;
   let data = req.body[0];
 
@@ -83,12 +83,12 @@ router.put("/:id", (req, res) => {
   }
 });
 
-router.param("id", (req, res, next, id) => {
+router.param('id', (req, res, next, id) => {
   req.user = arrayOfBarbers.getBarberById(id);
   next();
 });
 
-router.get("/:id", (req, res) => {
+router.get('/:id', (req, res) => {
   let barber = arrayOfBarbers.getBarberById(req.params.id);
   if (barber != null) {
     logger(`GET Request for barber with id ${req.params.id}`);
@@ -99,7 +99,7 @@ router.get("/:id", (req, res) => {
   }
 });
 
-router.get("/:id/hasVacation", (req, res) => {
+router.get('/:id/hasVacation', (req, res) => {
   let barber = arrayOfBarbers.getBarberById(req.params.id);
   if (barber != null) {
     logger(`GET Request Barber vacations with id ${req.params.id}`);
@@ -117,7 +117,7 @@ router.get("/:id/hasVacation", (req, res) => {
   }
 });
 
-router.delete("/:id", (req, res) => {
+router.delete('/:id', (req, res) => {
   logger(`Accesed DELETE with "/" path with id ${req.params.id}`);
   if (arrayOfBarbers.isIdInArray(req.params.id)) {
     arrayOfBarbers.deleteBarberById(req.params.id);

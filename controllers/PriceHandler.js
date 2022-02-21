@@ -1,6 +1,6 @@
-"use strict";
+'use strict';
 
-const Price = require("../classes/Price");
+const Price = require('../classes/Price');
 
 class PriceHandler {
   constructor() {
@@ -13,11 +13,11 @@ class PriceHandler {
   }
 
   isIdInArray(id) {
-    return this.prices.some((price) => price.id == id);
+    return this.prices.some(price => price.id == id);
   }
 
   updateObjectById(id, updateObject) {
-    let priceIndex = this.prices.findIndex((price) => price.id == id);
+    let priceIndex = this.prices.findIndex(price => price.id == id);
     console.log(this.prices[priceIndex]);
     for (let key in updateObject) {
       this.prices[priceIndex][key] = updateObject[key];
@@ -25,11 +25,11 @@ class PriceHandler {
   }
 
   getPriceById(id) {
-    return this.prices.find((price) => price.id === id);
+    return this.prices.find(price => price.id === id);
   }
 
   deletePriceById(id) {
-    let priceIndex = this.prices.findIndex((price) => price.id == id);
+    let priceIndex = this.prices.findIndex(price => price.id == id);
     delete this.prices[priceIndex];
   }
 }

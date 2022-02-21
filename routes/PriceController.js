@@ -1,27 +1,27 @@
-"use strict";
+'use strict';
 
-const { response } = require("express");
-const express = require("express");
+const { response } = require('express');
+const express = require('express');
 const router = express.Router();
-const res = require("express/lib/response");
+const res = require('express/lib/response');
 
-const PriceHandler = require("../controllers/PriceHandler");
-const DogClipperHandler = require("../controllers/DogClipperHandler");
+const PriceHandler = require('../controllers/PriceHandler');
+const DogClipperHandler = require('../controllers/DogClipperHandler');
 const dogClipperHandler = new DogClipperHandler().getInstance();
 
 let prices = new PriceHandler();
 
 function logger(str) {
   let now = new Date();
-  console.log(now.toUTCString() + " " + str);
+  console.log(now.toUTCString() + ' ' + str);
 }
 
-router.get("/", (req, res) => {
+router.get('/', (req, res) => {
   logger(`Accesed GET with "/" path`);
   res.send(prices);
 });
 
-router.get("/:id", (req, res) => {
+router.get('/:id', (req, res) => {
   let price = prices.getPriceById(req.params.id);
   if (price != null) {
     logger(`GET Request for price with id ${req.params.id}`);
@@ -32,7 +32,7 @@ router.get("/:id", (req, res) => {
   }
 });
 
-router.post("/", (req, res) => {
+router.post('/', (req, res) => {
   let data = req.body[0];
   if (!prices.isIdInArray(data.id)) {
     if (dogClipperHandler.isIdInArray(data.dogClipper)) {
@@ -53,7 +53,7 @@ router.post("/", (req, res) => {
   }
 });
 
-router.patch("/:id", (req, res) => {
+router.patch('/:id', (req, res) => {
   let updateObject = req.body;
   let id = req.params.id;
 
@@ -66,7 +66,7 @@ router.patch("/:id", (req, res) => {
   }
 });
 
-router.delete("/:id", (req, res) => {
+router.delete('/:id', (req, res) => {
   let id = req.params.id;
   logger(`Accesed DELETE with "/" path with id ${id}`);
   if (prices.isIdInArray(id)) {
@@ -77,7 +77,7 @@ router.delete("/:id", (req, res) => {
   }
 });
 
-router.put("/:id", (req, res) => {
+router.put('/:id', (req, res) => {
   let id = req.params.id;
   let data = req.body[0];
 

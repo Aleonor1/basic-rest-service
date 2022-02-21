@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 class Dog {
   constructor(name, dogBreed) {

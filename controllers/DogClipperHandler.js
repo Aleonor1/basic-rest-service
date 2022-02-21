@@ -1,6 +1,6 @@
-"use strict";
+'use strict';
 
-const DogClipper = require("../classes/DogClipper");
+const DogClipper = require('../classes/DogClipper');
 
 class DogClipperHandler {
   constructor() {
@@ -14,20 +14,20 @@ class DogClipperHandler {
   }
 
   isIdInArray(id) {
-    return this.dogClippers.some((dogClipper) => dogClipper.id == id);
+    return this.dogClippers.some(dogClipper => dogClipper.id == id);
   }
 
   isNameInArray(name) {
-    return this.dogClippers.some((dogClipper) => dogClipper.name == name);
+    return this.dogClippers.some(dogClipper => dogClipper.name == name);
   }
 
   getDogClipperById(id) {
-    return this.dogClippers.find((dogClipper) => dogClipper.id == id);
+    return this.dogClippers.find(dogClipper => dogClipper.id == id);
   }
 
   updateObjectById(id, updateObject) {
     let dogClipperIndex = this.dogClippers.findIndex(
-      (dogClipper) => dogClipper.id === id
+      dogClipper => dogClipper.id === id
     );
     for (let key in updateObject) {
       this.dogClippers[dogClipperIndex][key] = updateObject[key];
@@ -36,14 +36,14 @@ class DogClipperHandler {
 
   deleteDogClipperById(id) {
     let dogClipperIndex = this.dogClippers.findIndex(
-      (dogClipper) => dogClipper.id === id
+      dogClipper => dogClipper.id === id
     );
     delete this.dogClippers[dogClipperIndex];
   }
 
   replaceDogClipperById(id, dogClipper) {
     let dogClipperIndex = this.dogClippers.findIndex(
-      (dogClipper) => dogClipper.id === id
+      dogClipper => dogClipper.id === id
     );
     this.dogClippers[dogClipperIndex] = dogClipper;
   }

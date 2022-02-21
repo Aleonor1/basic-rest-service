@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 class Barbers {
   constructor() {
@@ -72,4 +72,4 @@ class Barbers {
 }
 
 module.exports = Barbers;
-const Barber = require("../classes/Barber");
+const Barber = require('../classes/Barber');

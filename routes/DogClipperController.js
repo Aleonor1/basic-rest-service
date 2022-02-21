@@ -1,25 +1,25 @@
-"use strict";
+'use strict';
 
-const { response } = require("express");
-const express = require("express");
-const res = require("express/lib/response");
-const DogClipper = require("../classes/DogClipper");
-const DogClipperHandler = require("../controllers/DogClipperHandler");
+const { response } = require('express');
+const express = require('express');
+const res = require('express/lib/response');
+const DogClipper = require('../classes/DogClipper');
+const DogClipperHandler = require('../controllers/DogClipperHandler');
 const router = express.Router();
 
 let dogClippers = new DogClipperHandler().getInstance();
 
 function logger(str) {
   let now = new Date();
-  console.log(now.toUTCString() + " " + str);
+  console.log(now.toUTCString() + ' ' + str);
 }
 
-router.get("/", (req, res) => {
+router.get('/', (req, res) => {
   logger(`Accesed GET with "/" path`);
   res.send(dogClippers);
 });
 
-router.post("/", (req, res) => {
+router.post('/', (req, res) => {
   let data = req.body[0];
   if (!dogClippers.isIdInArray(data.id)) {
     dogClippers.newDogClipper(
@@ -40,7 +40,7 @@ router.post("/", (req, res) => {
   }
 });
 
-router.patch("/:id", (req, res) => {
+router.patch('/:id', (req, res) => {
   let updateObject = req.body;
   let id = req.params.id;
   if (dogClippers.isIdInArray(id)) {
@@ -53,7 +53,7 @@ router.patch("/:id", (req, res) => {
   }
 });
 
-router.delete("/:id", (req, res) => {
+router.delete('/:id', (req, res) => {
   let id = req.params.id;
   logger(`Accesed DELETE with "/" path with id ${id}`);
   if (dogClippers.isIdInArray(id)) {
@@ -66,7 +66,7 @@ router.delete("/:id", (req, res) => {
   }
 });
 
-router.put("/:id", (req, res) => {
+router.put('/:id', (req, res) => {
   let id = req.params.id;
   let data = req.body[0];
 
