@@ -12,6 +12,10 @@ class Appointment {
   isAppointmentFree() {
     return this.barber === '';
   }
+
+  getBarber() {
+    return this.barber;
+  }
 }
 
 module.exports = Appointment;

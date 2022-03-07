@@ -22,7 +22,7 @@ function logger(str) {
 router.get('/', (req, res) => {
   logger(`Accesed GET with "/" path`);
   let workingDays = new WorkingDays();
-  let freeDays = workingDays.getDaysWithoutAppointments();
+  let freeDays = workingDays.getAvailableTimesForAppointments();
   res.send({ freeDays: [...freeDays] });
 });
 
@@ -31,20 +31,21 @@ router.post('/', (req, res) => {
   logger(`Accesed POST with "/" path`);
   let date = data.date;
   let workingDays = new WorkingDays();
-  let freeDays = workingDays.getDaysWithoutAppointments();
+  let freeDays = workingDays.getAvailableTimesForAppointments();
   let isFreeDate = freeDays.has(date);
+  let isHourIntervalFree = workingDays.isFreeHour(date, '13:00');
   let isBarber = arrayOfBarbers.isIdInArray(data.barberId);
   let isClient = clientHandler.isIdInArray(data.clientId);
 
-  if (isFreeDate && isBarber && isClient) {
+  if (isFreeDate && isBarber && isClient && isHourIntervalFree) {
     let appointment = new Appointment(
       arrayOfBarbers.getBarberById(data.barberId),
       dogClippers.getDogClipperById(data.dogClipperId),
       clientHandler.getClientById(data.clientId)
     );
-    workingDays.addAppointment(appointment, date);
+    workingDays.addAppointment(appointment, date, data.hour);
   }
-  res.send({ workingDays: [...workingDays.mapOfDays] });
+  res.send({ freeDays: [...freeDays] });
 });
 
 module.exports = router;

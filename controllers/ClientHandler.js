@@ -7,6 +7,7 @@ const fs = require('fs');
 class ClientHandler {
   constructor() {
     this.clients = new Array();
+    this.loadClientsFromJSON();
   }
 
   isIdInArray(id) {
@@ -47,7 +48,7 @@ class ClientHandler {
   }
 
   replaceClientById(id, dogClipper) {
-    let clientIndex = this.clients.findIndex(client => client.id === id);
+    let clientIndex = this.clients.findIndex(client => client.id == id);
     this.clients[clientIndex] = client;
     this.saveClientsaToJSON();
   }

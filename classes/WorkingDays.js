@@ -5,6 +5,7 @@ const Appointment = require('./Appointment');
 class WorkingDays {
   constructor() {
     this.mapOfDays = new Map();
+    this.addHoursToDay();
   }
 
   getDaysInMonth(month, year) {
@@ -19,28 +20,40 @@ class WorkingDays {
     return days;
   }
 
-  getFreeDaysOfCurrentMonth() {
+  getWorkingDaysOfCurrentMonth() {
     this.getDaysInMonth(2, 2022).forEach(day => {
-      this.mapOfDays.set(day, new Appointment('', '', '', day));
+      this.mapOfDays.set(day, this.addHoursToDay());
     });
   }
 
-  getDaysWithoutAppointments() {
-    this.getFreeDaysOfCurrentMonth();
+  getAvailableTimesForAppointments() {
+    this.getWorkingDaysOfCurrentMonth();
     let daysWithoutAppointments = new Map();
     for (let key of this.mapOfDays.keys()) {
       let currentIterationDay = this.mapOfDays.get(key);
-      if (currentIterationDay.isAppointmentFree()) {
-        daysWithoutAppointments.set(key, this.mapOfDays.get(key));
-      }
+      daysWithoutAppointments.set(key, this.mapOfDays.get(key));
     }
     return daysWithoutAppointments;
   }
 
-  addAppointment(appointment, data) {
-    console.log(this.mapOfDays.keys());
-    console.log(this.mapOfDays.get(data));
-    this.mapOfDays.set(data, appointment);
+  addHoursToDay() {
+    let arrayOfHours = new Object();
+    for (let hour = 8; hour < 17; hour++) {
+      arrayOfHours[hour + ':00'] = new Appointment('', '', '', '', '');
+    }
+
+    return arrayOfHours;
+  }
+
+  addAppointment(appointment, data, hour) {
+    this.mapOfDays.get(data)[hour] = appointment;
+    // this.mapOfDays.set(data[hour], appointment);
+  }
+
+  isFreeHour(data, hour) {
+    console.log(this.mapOfDays.get(data)[hour]);
+    let appointment = this.mapOfDays.get(data)[hour];
+    return appointment.getBarber() == '';
   }
 }
 
