@@ -56,6 +56,10 @@ class Client {
     let dog = new Dog(name, dogBreed);
     this.dogs.push(dog);
   }
+
+  getDogBreedByName(dogName) {
+    return this.dogs.find(dog => dog.getName() == dogName).getDogBreed();
+  }
 }
 
 module.exports = Client;

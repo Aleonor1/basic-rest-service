@@ -2,6 +2,7 @@
 
 const Client = require('../classes/Client');
 const Dog = require('../classes/Dog');
+const fs = require('fs');
 
 class ClientHandler {
   constructor() {
@@ -19,6 +20,7 @@ class ClientHandler {
   newClient(firstName, lastName, email, phoneNumber, id) {
     let client = new Client(firstName, lastName, email, phoneNumber, id);
     this.clients.push(client);
+    this.saveClientsaToJSON();
   }
 
   addDogToClient(clientId, dogName, dogBreed) {
@@ -26,6 +28,7 @@ class ClientHandler {
     if (client != null && client != undefined) {
       client.newDog(dogName, dogBreed);
     }
+    this.saveClientsaToJSON();
   }
 
   updateObjectById(id, updateObject) {
@@ -34,16 +37,41 @@ class ClientHandler {
     for (let key in updateObject) {
       this.clients[clientIndex][key] = updateObject[key];
     }
+    this.saveClientsaToJSON();
   }
 
   deleteClientById(id) {
     let clientIndex = this.clients.findIndex(client => client.id == id);
     delete this.clients[clientIndex];
+    this.saveClientsaToJSON();
   }
 
   replaceClientById(id, dogClipper) {
     let clientIndex = this.clients.findIndex(client => client.id === id);
     this.clients[clientIndex] = client;
+    this.saveClientsaToJSON();
+  }
+
+  async saveClientsaToJSON() {
+    fs.writeFile(
+      'database/clients.json',
+      JSON.stringify(this.clients),
+      'utf8',
+      function (err) {
+        if (err) {
+          console.log('An error occured while writing JSON Object to File.');
+          return console.log(err);
+        }
+
+        console.log('JSON file has been saved.');
+      }
+    );
+  }
+
+  async loadClientsFromJSON() {
+    let fileString = fs.readFileSync('database/clients.json').toString();
+    let fileObj = await JSON.parse(fileString);
+    this.clients = fileObj;
   }
 }
 

@@ -13,7 +13,7 @@ function logger(str) {
 const Barber = require('../classes/Barber');
 const Barbers = require('../controllers/BarberHandler');
 
-let arrayOfBarbers = new Barbers();
+let arrayOfBarbers = new Barbers().getInstance();
 
 router.get('/', (req, res) => {
   logger(`Accesed GET with "/" path`);

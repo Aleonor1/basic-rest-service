@@ -1,26 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  <form action="/barbers" method="POST">
-    <label>First Name
-      <input type="text" name="firstName" value="<%= locals.firstName %>" />
-    </label>
-    <label>ID
-      <input type="text" name="id" value="<%= locals.id %>" />
-    </label>
-    <label>Phone
-      <input type="text" name="phone" value="<%= locals.phone %>" />
-    </label>
-    <label>Adress
-      <input type="text" name="adress" value="<%= locals.adress %>" />
-    </label>
-    <button type="submit">Submit</button>
-  </form>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="demo-booking-multiple"></div>
+    <h1>Test</h1>
+    <form action="/barbers" method="POST">
+      <label
+        >First Name
+        <input type="text" name="firstName" value="<%= locals.firstName %>" />
+      </label>
+      <label
+        >ID
+        <input type="text" name="id" value="<%= locals.id %>" />
+      </label>
+      <label
+        >Phone
+        <input type="text" name="phone" value="<%= locals.phone %>" />
+      </label>
+      <label
+        >Adress
+        <input type="text" name="adress" value="<%= locals.adress %>" />
+      </label>
+      <button type="submit">Submit</button>
+    </form>
+  </body>
 </html>

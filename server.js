@@ -19,4 +19,7 @@ app.use('/prices', priceRouter);
 const clients = require('./routes/ClientController');
 app.use('/clients', clients);
 
+const appointments = require('./routes/AppointmentsController');
+app.use('/appointments', appointments);
+
 app.listen(3000);
