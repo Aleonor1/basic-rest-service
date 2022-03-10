@@ -7,35 +7,35 @@ class DogClipper {
     this.id = id;
   }
 
-  get getName() {
+  getName() {
     return this.name;
   }
 
-  get getDescription() {
+  getDescription() {
     return this.description;
   }
 
-  get getDifficultyLevel() {
+  getDifficultyLevel() {
     return this.difficultyLevel;
   }
 
-  get getId() {
+  getId() {
     return this.id;
   }
 
-  set setName(name) {
+  setName(name) {
     this.name = name;
   }
 
-  set setDescription(description) {
+  setDescription(description) {
     this.description = description;
   }
 
-  set setDifficultyLevel(level) {
+  setDifficultyLevel(level) {
     this.difficultyLevel = level;
   }
 
-  set setId(id) {
+  setId(id) {
     this.id = id;
   }
 }

@@ -48,10 +48,21 @@ class DogClipperHandler {
 
   replaceDogClipperById(id, dogClipper) {
     let dogClipperIndex = this.dogClippers.findIndex(
-      dogClipper => dogClipper.id === id
+      dogClipper => dogClipper.id == id
     );
     this.dogClippers[dogClipperIndex] = dogClipper;
     this.saveClientsaToJSON();
+  }
+
+  loadDogClippersFromJSON() {
+    this.readFilePromise().then(
+      message => {
+        console.log(message);
+      },
+      error => {
+        console.log(error.message);
+      }
+    );
   }
 
   async saveClientsaToJSON() {
@@ -70,10 +81,19 @@ class DogClipperHandler {
     );
   }
 
-  async loadDogClippersFromJSON() {
+  readFilePromise() {
     let fileString = fs.readFileSync('database/dogClippers.json').toString();
-    let fileObj = await JSON.parse(fileString);
-    this.dogClippers = fileObj;
+    return new Promise((resolve, reject) => {
+      if (!fileString) {
+        reject({
+          message: 'Dog Clipper File empty',
+        });
+      } else {
+        let fileObj = JSON.parse(fileString);
+        this.dogClippers = fileObj;
+        resolve('Dog Clippers loaded succesfully');
+      }
+    });
   }
 }
 

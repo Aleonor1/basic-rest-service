@@ -19,7 +19,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-  let client = clientHandler.getClientById(req.params.id);
+  let client = Client(clientHandler.getClientById(req.params.id));
   if (client != null) {
     logger(`GET Request for client with id ${req.params.id}`);
     res.send(client);
@@ -33,7 +33,7 @@ router.get('/:id/contact', (req, res) => {
   let client = clientHandler.getClientById(req.params.id);
   if (client != null) {
     logger(`GET Request for client with id ${req.params.id}`);
-    let contactData = `Client name: ${client.lastName} ${client.firstName} 
+    let contactData = `Client name: ${client.getLastName()} ${client.getFirstName()} 
     client phone number: ${client.phoneNumber}
     client email: ${client.email}`;
     res.send(contactData);
@@ -60,7 +60,7 @@ router.post('/', (req, res) => {
     address: ${data.difficulty}`);
     res.sendStatus(200);
   } else {
-    logger(`Client with id ${id} already exists`);
+    logger(`Client with id ${data.id} already exists`);
     res.sendStatus(400);
   }
 });
@@ -73,7 +73,7 @@ router.post('/:id/addDog', (req, res) => {
     res.sendStatus(200);
     logger(`Dog ${data.dogName} added to client with id ${clientId}`);
   } else {
-    logger(`Client with id ${clientId} already exists`);
+    logger(`Client with id ${clientId} doesn't exists`);
     res.sendStatus(400);
   }
 });
@@ -107,11 +107,12 @@ router.delete('/:id', (req, res) => {
 
 router.put('/:id', (req, res) => {
   let id = req.params.id;
-  let data = req.body[0];
+  console.log(req.body);
+  let data = req.body;
 
   if (clientHandler.isIdInArray(id)) {
     let client = new Client(data.firstName, data.lastName, data.email, data.id);
-    clientHandler.replaceDogClipperById(id, dogClipper);
+    clientHandler.replaceClientById(id, client);
     logger(`Replaced Client with id ${id} with values ${client}`);
     res.sendStatus(200);
   } else {

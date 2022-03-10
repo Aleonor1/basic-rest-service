@@ -1,10 +1,1 @@
-[
-  {
-    "firstName": "George",
-    "lastName": "George Wash",
-    "email": "george.gagicaru93@yahoo.com",
-    "phoneNumber": "+1 (937) 443-3901",
-    "id": 1,
-    "dogs": []
-  }
-]
+[{"firstName":"georghe","phoneNumber":"0727","id":555555555,"dogs":[]},{"firstName":"georghe","phoneNumber":"0727","id":55555555,"dogs":[{"name":"Toto","dogBreed":"Bichon"}]},{"id":1,"dogs":[]}]

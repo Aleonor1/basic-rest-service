@@ -34,6 +34,7 @@ class Barbers {
   deleteBarberById(id) {
     let barberIndex = this.getBarerIndexById(id);
     delete this.barbers[barberIndex];
+    this.barbers = this.barbers.filter(barber => barber);
     this.saveBarbersToJSON();
   }
 
@@ -47,19 +48,13 @@ class Barbers {
   }
 
   isIdInArray(id) {
-    for (let index = 0; index < this.barbers.length; index++) {
-      let currentBarber = this.barbers[index];
-      if (currentBarber !== undefined && currentBarber !== null)
-        if (currentBarber.id == id) {
-          return true;
-        }
-    }
-    return false;
+    return this.barbers.some(barber => barber.id == id);
   }
 
   isBarberNameInArray(firstName, lastName) {
     return this.barbers.some(
-      barber => barber.firstName == firstName && barber.lastName == lastName
+      barber =>
+        barber.getFirstName() == firstName && barber.getLastName() == lastName
     );
   }
 
@@ -100,10 +95,30 @@ class Barbers {
     );
   }
 
-  async loadBarbersFromJSON() {
+  loadBarbersFromJSON() {
+    this.readFilePromise().then(
+      message => {
+        console.log(message);
+      },
+      error => {
+        console.log(error.message);
+      }
+    );
+  }
+
+  readFilePromise() {
     let fileString = fs.readFileSync('database/barbers.json').toString();
-    let fileObj = await JSON.parse(fileString);
-    this.barbers = fileObj;
+    return new Promise((resolve, reject) => {
+      if (!fileString) {
+        reject({
+          message: 'Barber File empty',
+        });
+      } else {
+        let fileObj = JSON.parse(fileString);
+        this.barbers = fileObj;
+        resolve('Barbers loaded succesfully');
+      }
+    });
   }
 }
 

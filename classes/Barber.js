@@ -10,51 +10,51 @@ class Barber {
     this.id = id;
   }
 
-  get getFirstName() {
+  getFirstName() {
     return this.firstName;
   }
 
-  get getLastName() {
+  getLastName() {
     return this.lastName;
   }
 
-  get getIdentityCode() {
+  getIdentityCode() {
     return this.identityCode;
   }
 
-  get getAddress() {
+  getAddress() {
     return this.address;
   }
 
-  get getPhoneNumber() {
+  getPhoneNumber() {
     return this.phoneNumber;
   }
 
-  get getId() {
+  getId() {
     return this.id;
   }
 
-  set setFirstName(firstName) {
+  setFirstName(firstName) {
     this.firstName = firstName;
   }
 
-  set setLastName(lastName) {
+  setLastName(lastName) {
     this.lastName = lastName;
   }
 
-  set setIdentityCode(identityCode) {
+  setIdentityCode(identityCode) {
     this.identityCode = identityCode;
   }
 
-  set setAddress(address) {
+  setAddress(address) {
     this.address = address;
   }
 
-  set setPhoneNumber(phoneNumber) {
+  setPhoneNumber(phoneNumber) {
     this.phoneNumber = phoneNumber;
   }
 
-  set setId(id) {
+  setId(id) {
     this.id = id;
   }
 

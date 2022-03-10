@@ -7,6 +7,7 @@ const res = require('express/lib/response');
 
 const PriceHandler = require('../controllers/PriceHandler');
 const DogClipperHandler = require('../controllers/DogClipperHandler');
+const Price = require('../classes/Price');
 const dogClipperHandler = new DogClipperHandler().getInstance();
 
 let prices = new PriceHandler();
@@ -83,6 +84,7 @@ router.put('/:id', (req, res) => {
 
   if (prices.isIdInArray(id)) {
     let price = new Price(data.price, data.dogBreed, data.dogClipper);
+    prices.replacePriceById(id, price);
     res.sendStatus(200);
   } else {
     res.sendStatus(404);

@@ -27,6 +27,8 @@ router.get('/new', (req, res) => {
 router.post('/', (req, res) => {
   let data = req.body[0];
   logger(`Accesed POST with "/" path`);
+  console.log(data.id);
+  console.log(req.body);
   if (!arrayOfBarbers.isIdInArray(data.id)) {
     arrayOfBarbers.newBarber(
       data.firstName,
@@ -121,10 +123,10 @@ router.delete('/:id', (req, res) => {
   logger(`Accesed DELETE with "/" path with id ${req.params.id}`);
   if (arrayOfBarbers.isIdInArray(req.params.id)) {
     arrayOfBarbers.deleteBarberById(req.params.id);
-    logger(`DELETE Request for barber with id ${id}`);
+    logger(`DELETE Request for barber with id ${req.params.id}`);
     res.sendStatus(200);
   } else {
-    logger(`Barber with identityCode ${id} doesn't exists!`);
+    logger(`Barber with identityCode ${req.params.id} doesn't exists!`);
     res.sendStatus(404);
   }
 });

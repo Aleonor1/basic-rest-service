@@ -26,9 +26,20 @@ class ClientHandler {
 
   addDogToClient(clientId, dogName, dogBreed) {
     let client = this.clients.find(client => client.id == clientId);
-    if (client != null && client != undefined) {
-      client.newDog(dogName, dogBreed);
+    let newClient = new Client(
+      client.firstName,
+      client.lastName,
+      client.email,
+      client.phoneNumber,
+      client.id
+    );
+    this.deleteClientById(client.id);
+
+    console.log(client instanceof Client);
+    if (newClient != null && newClient != undefined) {
+      newClient.newDog(dogName, dogBreed);
     }
+    this.clients.push(newClient);
     this.saveClientsaToJSON();
   }
 
@@ -44,16 +55,28 @@ class ClientHandler {
   deleteClientById(id) {
     let clientIndex = this.clients.findIndex(client => client.id == id);
     delete this.clients[clientIndex];
+    this.clients = this.clients.filter(client => client);
     this.saveClientsaToJSON();
   }
 
-  replaceClientById(id, dogClipper) {
+  replaceClientById(id, client) {
     let clientIndex = this.clients.findIndex(client => client.id == id);
     this.clients[clientIndex] = client;
     this.saveClientsaToJSON();
   }
 
-  async saveClientsaToJSON() {
+  loadClientsFromJSON() {
+    this.readFilePromise().then(
+      message => {
+        console.log(message);
+      },
+      error => {
+        console.log(error.message);
+      }
+    );
+  }
+
+  saveClientsaToJSON() {
     fs.writeFile(
       'database/clients.json',
       JSON.stringify(this.clients),
@@ -69,10 +92,19 @@ class ClientHandler {
     );
   }
 
-  async loadClientsFromJSON() {
+  readFilePromise() {
     let fileString = fs.readFileSync('database/clients.json').toString();
-    let fileObj = await JSON.parse(fileString);
-    this.clients = fileObj;
+    return new Promise((resolve, reject) => {
+      if (!fileString) {
+        reject({
+          message: 'Client File empty',
+        });
+      } else {
+        let fileObj = JSON.parse(fileString);
+        this.clients = fileObj;
+        resolve('Clients loaded succesfully');
+      }
+    });
   }
 }
 

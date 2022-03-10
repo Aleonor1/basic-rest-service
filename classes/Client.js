@@ -3,52 +3,52 @@
 const Dog = require('./Dog');
 
 class Client {
-  constructor(firstName, lastName, email, phoneNumber, id) {
+  constructor(firstName, lastName, email, phoneNumber, id, dogs = new Array()) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;
     this.phoneNumber = phoneNumber;
     this.id = id;
-    this.dogs = new Array();
+    this.dogs = dogs;
   }
 
-  get getFirstName() {
+  getFirstName() {
     return this.firstName;
   }
 
-  get getLastName() {
+  getLastName() {
     return this.lastName;
   }
 
-  get getPhoneNumber() {
+  getPhoneNumber() {
     return this.phoneNumber;
   }
 
-  get getId() {
+  getId() {
     return this.id;
   }
 
-  get getEmail() {
+  getEmail() {
     return this.email;
   }
 
-  set setEmail(email) {
+  setEmail(email) {
     this.email = email;
   }
 
-  set setFirstName(firstName) {
+  setFirstName(firstName) {
     this.firstName = firstName;
   }
 
-  set setLastName(lastName) {
+  setLastName(lastName) {
     this.lastName = lastName;
   }
 
-  set setPhoneNumber(phoneNumber) {
+  setPhoneNumber(phoneNumber) {
     this.phoneNumber = phoneNumber;
   }
 
-  set setId(id) {
+  setId(id) {
     this.id = id;
   }
 

@@ -19,6 +19,16 @@ router.get('/', (req, res) => {
   res.send(dogClippers);
 });
 
+router.get('/:id', (req, res) => {
+  let id = req.params.id;
+  logger(`Accesed GET with "/" path`);
+  if (dogClippers.isIdInArray(id)) {
+    res.send(dogClippers.getDogClipperById(id));
+  } else {
+    res.sendStatus(404);
+  }
+});
+
 router.post('/', (req, res) => {
   let data = req.body[0];
   if (!dogClippers.isIdInArray(data.id)) {
@@ -36,7 +46,7 @@ router.post('/', (req, res) => {
     res.sendStatus(200);
   } else {
     logger(`Dog Clipper with identityCode ${data.id} already exists!`);
-    res.sendStatus(404);
+    res.sendStatus(400);
   }
 });
 
