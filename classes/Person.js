@@ -28,6 +28,10 @@ class Person {
   set phoneNumber(phoneNumber) {
     this._phoneNumber = phoneNumber;
   }
+
+  get fullName() {
+    return this._firstName + this._lastName;
+  }
 }
 
 module.exports = Person;

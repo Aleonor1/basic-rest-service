@@ -43,6 +43,7 @@ class DogClipperHandler {
       dogClipper => dogClipper.id === id
     );
     delete this.dogClippers[dogClipperIndex];
+    this.dogClippers = this.dogClippers.filter(dclipper => dclipper);
     this.saveClientsaToJSON();
   }
 

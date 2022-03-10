@@ -51,7 +51,6 @@ class WorkingDays {
   }
 
   isFreeHour(data, hour) {
-    console.log(this.mapOfDays.get(data)[hour]);
     let appointment = this.mapOfDays.get(data)[hour];
     return appointment.getBarber() == '';
   }

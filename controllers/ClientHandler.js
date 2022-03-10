@@ -31,19 +31,28 @@ class ClientHandler {
     this.clients.push(client);
     this.saveClientsaToJSON();
   }
-
+  // firstName,
+  // lastName,
+  // email,
+  // phoneNumber,
+  // id,
+  // address,
+  // identityCode,
+  // dogs = new Array()
   addDogToClient(clientId, dogName, dogBreed) {
     let client = this.clients.find(client => client.id == clientId);
     let newClient = new Client(
-      client.firstName,
-      client.lastName,
+      client._firstName,
+      client._lastName,
       client.email,
-      client.phoneNumber,
-      client.id
+      client._phoneNumber,
+      client.id,
+      client.address,
+      client.identityCode,
+      client.dogs
     );
     this.deleteClientById(client.id);
 
-    console.log(client instanceof Client);
     if (newClient != null && newClient != undefined) {
       newClient.newDog(dogName, dogBreed);
     }
