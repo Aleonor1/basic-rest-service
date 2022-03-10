@@ -1,11 +1,15 @@
 'use strict';
-class Barber {
+
+const Person = require('./Person');
+
+class Barber extends Person {
   constructor(firstName, lastName, identityCode, address, phoneNumber, id) {
-    this.firstName = firstName;
-    this.lastName = lastName;
+    super(firstName, lastName, phoneNumber);
+    // this.#firstName = firstName;
+    // this.#lastName = lastName;
     this.identityCode = identityCode;
     this.address = address;
-    this.phoneNumber = phoneNumber;
+    // this.#phoneNumber = phoneNumber;
     this.freeDays = new Array();
     this.id = id;
   }

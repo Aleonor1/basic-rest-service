@@ -1,13 +1,26 @@
 'use strict';
 
 const Dog = require('./Dog');
+const Person = require('./Person');
 
-class Client {
-  constructor(firstName, lastName, email, phoneNumber, id, dogs = new Array()) {
-    this.firstName = firstName;
-    this.lastName = lastName;
+class Client extends Person {
+  constructor(
+    firstName,
+    lastName,
+    email,
+    phoneNumber,
+    id,
+    address,
+    identityCode,
+    dogs = new Array()
+  ) {
+    super(firstName, lastName, phoneNumber);
+    // this.firstName = firstName;
+    // this.lastName = lastName;
     this.email = email;
-    this.phoneNumber = phoneNumber;
+    this.address = address;
+    this.identityCode = identityCode;
+    // this.phoneNumber = phoneNumber;
     this.id = id;
     this.dogs = dogs;
   }

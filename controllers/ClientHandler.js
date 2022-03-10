@@ -18,8 +18,16 @@ class ClientHandler {
     return this.clients.find(client => client.id == id);
   }
 
-  newClient(firstName, lastName, email, phoneNumber, id) {
-    let client = new Client(firstName, lastName, email, phoneNumber, id);
+  newClient(address, email, firstName, lastName, id, identityCode, phone) {
+    let client = new Client(
+      firstName,
+      lastName,
+      email,
+      phone,
+      id,
+      address,
+      identityCode
+    );
     this.clients.push(client);
     this.saveClientsaToJSON();
   }

@@ -19,9 +19,10 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-  let client = Client(clientHandler.getClientById(req.params.id));
+  let client = clientHandler.getClientById(req.params.id);
   if (client != null) {
     logger(`GET Request for client with id ${req.params.id}`);
+    console.log(client);
     res.send(client);
   } else {
     logger(`Client with identityCode ${req.params.id} doesn't exists!`);
@@ -47,11 +48,13 @@ router.post('/', (req, res) => {
   let data = req.body[0];
   if (!clientHandler.isIdInArray(data.id)) {
     clientHandler.newClient(
+      data.address,
+      data.email,
       data.firstName,
       data.lastName,
-      data.email,
-      data.phone,
-      data.id
+      data.id,
+      data.identityCode,
+      data.phone
     );
     logger(`Added client with values:
     firstName: ${data.name}
