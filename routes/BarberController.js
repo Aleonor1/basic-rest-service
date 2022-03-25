@@ -25,11 +25,9 @@ router.get('/new', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  let data = req.body[0];
+  const data = req.body[0];
   logger(`Accesed POST with "/" path`);
-  console.log(data.id);
-  console.log(req.body);
-  if (!arrayOfBarbers.isIdInArray(data.id)) {
+  if (verifyPostParameters()) {
     arrayOfBarbers.newBarber(
       data.firstName,
       data.lastName,
@@ -38,21 +36,30 @@ router.post('/', (req, res) => {
       data.phone,
       data.id
     );
-    logger(`Added barber with values:
-        firstName: ${data.firstName}
-        lastName: ${data.lastName}
-        identityCode: ${data.id},
-        address: ${data.address},
-        phone: ${data.phone}`);
+    logger(`Added barber with id:
+        identityCode: ${data.id}`);
     res.sendStatus(200);
   } else {
     logger(`Barber with identityCode ${data.id} already exists!`);
-    res.sendStatus(404);
+    res.sendStatus(400);
+  }
+
+  function verifyPostParameters() {
+    return (
+      data.id &&
+      !arrayOfBarbers.isIdInArray(data.id) &&
+      data.firstName &&
+      data.lastName &&
+      data.identityCode &&
+      data.address &&
+      data.phone &&
+      data.id
+    );
   }
 });
 
 router.patch('/:id', (req, res) => {
-  let updateObject = req.body;
+  const updateObject = req.body;
   let id = req.params.id;
   if (arrayOfBarbers.isIdInArray(id)) {
     arrayOfBarbers.updateObjectById(id, updateObject);
@@ -92,7 +99,7 @@ router.param('id', (req, res, next, id) => {
 
 router.get('/:id', (req, res) => {
   let barber = arrayOfBarbers.getBarberById(req.params.id);
-  if (barber != null) {
+  if (barber !== null) {
     logger(`GET Request for barber with id ${req.params.id}`);
     res.send(barber);
   } else {

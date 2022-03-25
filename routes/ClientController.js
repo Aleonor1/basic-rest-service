@@ -46,7 +46,7 @@ router.get('/:id/contact', (req, res) => {
 
 router.post('/', (req, res) => {
   let data = req.body[0];
-  if (!clientHandler.isIdInArray(data.id)) {
+  if (verifyPostParameters()) {
     clientHandler.newClient(
       data.address,
       data.email,
@@ -56,15 +56,25 @@ router.post('/', (req, res) => {
       data.identityCode,
       data.phone
     );
-    logger(`Added client with values:
-    firstName: ${data.name}
-    lastName: ${data.description}
-    id: ${data.id},
-    address: ${data.difficulty}`);
+    logger(`Added client with id:id: ${data.id}`);
     res.sendStatus(200);
   } else {
-    logger(`Client with id ${data.id} already exists`);
+    logger(`Bad request`);
     res.sendStatus(400);
+  }
+
+  function verifyPostParameters() {
+    return (
+      data.id &&
+      !clientHandler.isIdInArray(data.id) &&
+      data.address &&
+      data.email &&
+      data.firstName &&
+      data.lastName &&
+      data.id &&
+      data.identityCode &&
+      data.phone
+    );
   }
 });
 

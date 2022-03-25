@@ -1,1 +1,42 @@
-[{"_firstName":"georghe","_lastName":"wash","_phoneNumber":"0727","email":"333333333@asdasdasd.com","address":"Belarus","identityCode":"198126","id":44456657,"dogs":[{"name":"Toto","dogBreed":"Bichon"}]}]
+[
+    {
+        "_firstName": "georghe",
+        "_lastName": "wash",
+        "_phoneNumber": "0727",
+        "email": "333333333@asdasdasd.com",
+        "address": "Belarus",
+        "identityCode": "198126",
+        "id": 44456657,
+        "dogs": [{ "name": "Toto", "dogBreed": "Bichon" }]
+    },
+    {
+        "_firstName": "georghe",
+        "_lastName": "wash",
+        "_phoneNumber": "0727",
+        "email": "333333333@asdasdasd.com",
+        "address": "Belarus",
+        "identityCode": "198126",
+        "id": 444566576,
+        "dogs": []
+    },
+    {
+        "_firstName": "georghe",
+        "_lastName": "wash",
+        "_phoneNumber": "0727",
+        "email": "333333333@asdasdasd.com",
+        "address": "Belarus",
+        "identityCode": "198126",
+        "id": 4445665764,
+        "dogs": []
+    },
+    {
+        "_firstName": "georghe",
+        "_lastName": "wash",
+        "_phoneNumber": "0727",
+        "email": "333333333@asdasdasd.com",
+        "address": "Belarus",
+        "identityCode": "198126",
+        "id": 44456657645,
+        "dogs": []
+    }
+]
